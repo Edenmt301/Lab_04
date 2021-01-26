@@ -5,30 +5,36 @@ function Withdraw(amount,value)
     }
     else{
         amount -= value
+        console.log("Your account has been debited with ETB " + value +". Your current balance is ETB " + amount);
     }
+    return amount
 }
 function Deposit(amount,value)
-{
+{ 
     amount += value
-
+    console.log("Your account has been credited with ETB " + value +". Your current balance is ETB " + amount);
+    return amount
 }
 function Balance(amount)
 {
-    console.log(amount);
+    console.log("Your current balance is ETB " + amount);
 
 }
 function Transfer(amount,value,account)
 {
     amount -=value
+    console.log("You have transferred ETB " + value +" to "+ account +". Your current balance is ETB " + amount);
+    return amount
 }
 
 
 
 (function() {
-
-    var amount=0;
-   
-    operation = prompt("Choose your operation:\n1.Withdraw\n2.Deposit\n3.Balance\n4.Transfer");
+    
+    var amount= 0;
+    var continueOp=true;
+    while(continueOp===true){
+    operation = prompt("Choose your operation:\n1.Withdraw\n2.Deposit\n3.Balance\n4.Transfer\n5.Quit");
     if (operation === "1") {
         n = parseInt(prompt("How much do you want to withdraw?"));
         if(n<100){
@@ -38,13 +44,13 @@ function Transfer(amount,value,account)
             console.log("The amount is too big!")
         }
         else{
-            Withdraw(amount,n)  
+            amount=Withdraw(amount,n)  
         }      
     } 
 
     else if(operation === "2") {
         n =parseInt(prompt("How much do you want to deposit?"));
-        Deposit(amount,n)  
+        amount=Deposit(amount,n)  
     } 
 
     else if(operation === "3") {
@@ -54,8 +60,12 @@ function Transfer(amount,value,account)
     else if(operation === "4") {
         value = parseInt(prompt("How much money do you want to transfer?"));
         account = prompt("whose account do you want to transfer to?");
-        Transfer(amount,value,account)
+        amount=Transfer(amount,value,account)
     }
+    else{
+        continueOp=false
+    }
+}
 })();
 
 
