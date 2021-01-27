@@ -68,4 +68,3 @@ function Transfer(amount,value,account)
 }
 })();
 
-
